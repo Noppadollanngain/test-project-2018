@@ -1,4 +1,4 @@
-# project กลุ่ม 2 2/2561 alpha2
+# project กลุ่ม 2 2/2561
 software eng 2018
 
 # Team Member
