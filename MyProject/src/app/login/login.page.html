@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Login 
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+        <ion-card class="card-background-page">
+          <img src="https://materializecss.com/images/parallax2.jpg"/>
+          <div class="card-title">ยินดีต้อนรับเข้าสู่แอพจองห้องเรียน ทค.2</div>
+        </ion-card>
+
+
+  <ion-item>
+    <ion-input required type="text" placeholder="Username"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input required type="text" placeholder="Password"></ion-input>
+  </ion-item>
+
+  <ion-button shape="round" (click)="goToBookRoom()" color="primary" fill="outline">Login</ion-button>
+  <ion-button shape="round" color="danger" fill="outline">Cancel</ion-button>
+  
+</ion-content>
