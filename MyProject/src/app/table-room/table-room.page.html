@@ -9,35 +9,21 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content > 
+  <ion-row *ngFor="let item of tabletimes">
   <ion-card>
-    <img src="assets/Activity25530630_083643.jpg"/>
-    <ion-card-content>
-      <ion-card-title>
-        ห้อง ทค.201 <p> เวลาใช้ 15.00 - 17.00 น. </p>
-      </ion-card-title>
-      <p>
-        วิชา : Software Engineering วิศวกรรมซอฟต์แวร์
-      </p>
-      <p>
-        อาจารย์ผู้สอน : ปรัชญ์ ปิยะวงศ์วิศาล
-      </p>
-    </ion-card-content>
-  </ion-card>
-
-  <ion-card>
-      <img src="http://gl.chiangrai.rmutl.ac.th/wp-content/uploads/photo-gallery/thumb/IMG_4619.JPG"/>
+      <img src="{{ item.imges }}"/>
       <ion-card-content>
         <ion-card-title>
-          ห้อง ทค.202 <p> เวลาใช้ 09.00 - 11.00 น. </p>
+          {{ item.room }} <p> เวลาใช้ {{ item.start | date:'short' }} - {{ item.end | date:'short' }} </p>
         </ion-card-title>
         <p>
-          วิชา : Software Engineering วิศวกรรมซอฟต์แวร์
+          วิชา : {{ item.subjuct }}
         </p>
         <p>
-          อาจารย์ผู้สอน : ปรัชญ์ ปิยะวงศ์วิศาล
+          อาจารย์ผู้สอน : {{ item.fname }} {{ item.lname }}
         </p>
       </ion-card-content>
     </ion-card>
-    
+  </ion-row>
 </ion-content>
