@@ -42,3 +42,6 @@ software eng 2018
 
 # หมายเหตุ
   หากการทำไม่สำเร็จจะใช้การพัฒนาโดยเว็ปไซต์
+
+# trello
+  https://trello.com/b/wbN6fIuk/project
