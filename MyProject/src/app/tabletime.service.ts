@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 export interface TableTime {
   fname: string;
   lname: string;
-  room: string;
+  room: number;
   start: number;
   end: number;
   subjuct: string;
@@ -34,6 +34,14 @@ export class TabletimeService {
 
   getMedicine(){
     return this.tabletimes;
+  }
+
+  addMedicine(addTable:TableTime){
+    return this.tabletimeCollection.add(addTable);
+  }
+
+  deleteMedicine(id){
+    return this.tabletimeCollection.doc(id).delete();
   }
   
 }

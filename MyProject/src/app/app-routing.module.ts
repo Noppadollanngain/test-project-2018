@@ -24,7 +24,10 @@ const routes: Routes = [
   { 
     path: 'book-room', 
     loadChildren: './book-room/book-room.module#BookRoomPageModule' },
-  { path: 'select-time', loadChildren: './select-time/select-time.module#SelectTimePageModule' }
+  { path: 'select-time', 
+    loadChildren: './select-time/select-time.module#SelectTimePageModule' },
+  { path: 'select-time/:id', 
+    loadChildren: './select-time/select-time.module#SelectTimePageModule' }
 ];
 
 @NgModule({
