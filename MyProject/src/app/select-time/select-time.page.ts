@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { TabletimeService, TableTime } from '../tabletime.service';
 import { NavController } from '@ionic/angular';
+import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '../auth.service';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-select-time',
@@ -10,23 +13,41 @@ import { NavController } from '@ionic/angular';
 
 export class SelectTimePage implements OnInit {
   tabletimes : TableTime[];
-  start : String = new Date().toISOString();
-  end : String = new Date().toISOString();
+  start : String = new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000).toISOString();
+  end : String = new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000).toISOString();
   subjuct : String = 'ระบุวิชาที่สอน';
   fname : String = 'ชื่ออาจารย์ผู้สอน';
   lname : String = 'สกุลอาจารย์ผู้สอน';
-  room : number = 1 ;
+  room : number = this.route.snapshot.params['id']; ;
+  
+  dateStart : string;
+  dateEnd : string;
 
   addTable: TableTime ={
     fname : 'ชื่ออาจารย์ผู้สอน',
     lname : 'สกุลอาจารย์ผู้สอน',
-    room :  1 ,
+    room :  this.route.snapshot.params['id'] ,
     start : new Date().getDate(),
     end : new Date().getDate(),
     subjuct : 'ระบุวิชาที่สอน',
+    idadmin : null,
   };
 
-  constructor(private tabletimeservice : TabletimeService,private nav:NavController ) { }
+  constructor(public navCtrl: NavController,public authService: AuthService,private tabletimeservice : TabletimeService,private route:ActivatedRoute,private nav:NavController,private storage: Storage) { 
+    storage.get('loginstatus').then((status) => {
+      if(status){
+        console.log('status', status);
+      }else{
+        this.navCtrl.navigateRoot('/login');
+      }
+      
+    });
+
+    storage.get('uid').then((uid) => {
+      this.addTable.idadmin = uid;
+    });
+    
+  }
 
   ngOnInit() {
     this.tabletimeservice.getMedicine().subscribe(
@@ -37,7 +58,10 @@ export class SelectTimePage implements OnInit {
   }
 
   saveMedicine(){
-    alert(this.addTable.start);
+    this.dateStart = this.start.toString();
+    this.dateEnd = this.end.toString();
+    this.addTable.start = Math.round((new Date(this.dateStart).getTime())/1000);
+    this.addTable.end = Math.round((new Date(this.dateEnd).getTime())/1000);
     this.tabletimeservice.addMedicine(this.addTable);
   }
 

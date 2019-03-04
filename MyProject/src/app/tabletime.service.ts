@@ -10,6 +10,7 @@ export interface TableTime {
   start: number;
   end: number;
   subjuct: string;
+  idadmin : string;
 }
 
 @Injectable({

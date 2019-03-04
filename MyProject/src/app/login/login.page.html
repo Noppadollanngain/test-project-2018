@@ -10,14 +10,32 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-item>
-    <ion-input required type="text" placeholder="Username"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-input required type="text" placeholder="Password"></ion-input>
-  </ion-item>
-
-  <ion-button shape="round" (click)="goToBookRoom()" color="primary" fill="outline">Login</ion-button>
-  <ion-button shape="round" color="danger" fill="outline">Cancel</ion-button>
-  
+    <div *ngIf="!(authService.user | async)">
+        <ion-item>
+            <ion-input type="text" [(ngModel)]="email" placeholder="email"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input type="password" [(ngModel)]="password" placeholder="password"></ion-input>
+          </ion-item>
+      
+        <ion-button (click)="signup()" [disabled]="!email || !password">
+          Signup
+        </ion-button>
+      
+        <ion-button (click)="login()" [disabled]="!email || !password">
+          Login
+        </ion-button>
+      </div>
+      <div *ngIf="authService.user | async">
+          <ion-item>
+              <ion-label>
+                การ Login สำเร็จเลือกห้องเพื่อทำการจอง
+              </ion-label>
+          </ion-item>
+        <ion-button (click)="goToBookRoom()" >
+          เข้าสู่หน้าจองห้องเรียน      </ion-button>
+        <ion-button (click)="logout()" >
+          Logout
+        </ion-button>
+      </div>
 </ion-content>

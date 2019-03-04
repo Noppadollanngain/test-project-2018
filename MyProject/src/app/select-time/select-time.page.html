@@ -33,13 +33,14 @@
             </ion-button>
      
   <ion-list *ngFor="let item of tabletimes">
-    <div *ngIf="item.room === room">
+    <div *ngIf="item.room == room">
     <ion-item>
-        <ion-button (click)="deleteMedicine(item)" color="danger"><ion-icon slot="start" name="trash"></ion-icon></ion-button>
+        <ion-button *ngIf="item.idadmin == addTable.idadmin" (click)="deleteMedicine(item)" color="danger"><ion-icon slot="start" name="trash"></ion-icon></ion-button>
      <ion-card class="imgwidth">
        <ion-card-content>
          <ion-card-title>
-           ทค.20{{ item.room }} <p> เวลาใช้ {{ item.start | date:'short' }} - {{ item.end | date:'short' }} </p>
+           ทค.20{{ item.room }} 
+           <p> เวลาใช้ {{ (item.start * 1000 ) - 25200000 | date:'short'  }} ถึง {{ (item.end * 1000 ) - 25200000 | date:'short' }} </p>
          </ion-card-title>
          <p>
            วิชา : {{ item.subjuct }}
